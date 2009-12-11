@@ -1,0 +1,84 @@
+# Conky, a system monitor, based on torsmo
+#
+# Any original torsmo code is licensed under the BSD license
+#
+# All code written since the fork of torsmo is licensed under the GPL
+#
+# Please see COPYING for details
+#
+# Copyright (c) 2004, Hannu Saransaari and Lauri Hakkarainen
+# Copyright (c) 2005-2009 Brenden Matthews, Philip Kovacs, et. al. (see AUTHORS)
+# All rights reserved.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+
+#alignment top_left
+alignment bottom_left
+background no
+border_width 1
+cpu_avg_samples 2
+default_color white
+default_outline_color white
+default_shade_color white
+draw_borders no
+draw_graph_borders yes
+draw_outline no
+draw_shades no
+double_buffer yes
+use_xft yes
+#xftfont DejaVu Sans Mono:size=10
+xftfont WenQuanYi Zen Hei:size=10
+gap_x 5
+gap_y 60
+minimum_size 5 5
+net_avg_samples 2
+no_buffers yes
+out_to_console no
+out_to_stderr no
+extra_newline no
+own_window yes
+own_window_class Conky
+own_window_type desktop
+own_window_transparent yes
+stippled_borders 0
+update_interval 2.5
+uppercase no
+use_spacer none
+show_graph_scale no
+show_graph_range no
+
+# personal
+#${scroll 16 $nodename - $sysname $kernel on $machine | }
+#${color grey}${alignc}${time %H:%M:%S}
+#${color grey}硬盘温度: $alignr${color #00ff00}${sudo hddtemp /dev/sda}
+
+TEXT
+${color grey}${alignc}${time %b %d %Y, %a}
+${color grey}服务器运行时间:$color $uptime
+${color grey}服务器频率 (in GHz):$color $freq_g 兆赫
+${color grey}内核: $kernel
+${color grey}RAM  Usage:$color $mem / $memmax - $memperc% ${membar 4}
+${color grey}Swap Usage:$color $swap / $swapmax - $swapperc% ${swapbar 4}
+${color grey}CPU  Usage:$color $cpu% ${cpubar 4}
+${color grey}${alignc}文件系统        :
+ 根分区 $color${fs_used /} / ${fs_size /} ${fs_bar 6 /}
+ /usr区 $color${fs_used /} / ${fs_size /usr} ${fs_bar 6 /}
+ 资源盘 $color${fs_used /mnt/data} / ${fs_size /mnt/data} ${fs_bar 6 /mnt/data}
+ /lfs区  $color${fs_used /mnt/lfs} / ${fs_size /mnt/lfs} ${fs_bar 6 /mnt/lfs}
+${color grey}${alignc}网络系统        :
+上传速度:$color ${upspeed eth0} ${color grey} - 下载速度:$color ${downspeed eth0}
+累计上传:$color ${totalup eth0} ${color grey} - 累计下载:$color ${totaldown eth0}
+${color grey}${alignc}关注进程        :
+${color grey}Name              PID   CPU%   MEM%
+${color lightgrey} ${top name 1} ${top pid 1} ${top cpu 1} ${top mem 1}
